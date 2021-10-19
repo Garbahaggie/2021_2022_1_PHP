@@ -10,14 +10,18 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable= [
-        'title','body',
+        'title','body', "subreddit_id"
     ];
 
     public function subreddit() {
-        $this->belongsTo(Subreddit::class);
+        return $this->belongsTo(Subreddit::class);
     }
     
     public function upvoters() {
-        $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class);
+    }
+
+    public function author() {
+        return $this->belongsTo(User::class,'author_id');
     }
 }
