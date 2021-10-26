@@ -46,11 +46,15 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'author_id');
     }
 
-    public function upvotes() {
-        return $this->belongsToMany(Post::class);
-    }
-
     public function subscriptions() {
         return $this->belongsToMany(Subreddit::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function upvotes() {
+        return $this->hasMany(Upvote::class);
     }
 }
