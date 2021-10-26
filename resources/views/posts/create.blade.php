@@ -5,8 +5,9 @@
     <div class="card-header">
         <h4 class="display-4">{{ __('Post in')}} {{$subreddit->name}}</h4>
     </div>
+    
     <div class="card-body">
-        <form action="{{ route('post.create') }}" method="POST">
+        <form action="{{ route('post.store') }}" method="POST">
             @csrf
             <input type="hidden" name="subreddit_id" value="{{$subreddit->id}}">
             <div class="mb-3">

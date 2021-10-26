@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Subreddit;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -79,5 +80,21 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function comment(Request $request, Post $post){
+        $request->validate([
+            'comment'=>'required|max:250|min:5',
+        ]);
+
+        $comment = new Comment;
+
+        $comment->author_id = Auth::user()->id;
+        $comment->message = $request->comment;
+
+        $post->comments()->save($comment);
+
+        return back()
+        ->with('success',__('Comment posted!'));
     }
 }

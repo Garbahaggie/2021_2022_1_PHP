@@ -51,6 +51,7 @@
 
     
     <main class="container py-5">
+        @include('layouts.alerts._success')
         @yield('content')
     </main>
 

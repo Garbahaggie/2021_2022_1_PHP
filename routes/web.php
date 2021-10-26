@@ -30,5 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sign-out',[Controllers\Auth\SessionController::class, 'destroy'])->name('auth.logout');
     
     Route::get('/publish/{subreddit}', [Controllers\PostController::class, 'create'])->name('post.create');
-    Route::post('/publish', [Controllers\PostController::class, 'store']);
+    Route::post('/publish', [Controllers\PostController::class, 'store'])->name('post.store');
+
+    Route::get('/post/{post}/edit',[Controllers\PostController::class, 'edit'])->name('post.edit');
+    Route::post('/post/{post}/edit',[Controllers\PostController::class, 'update']);
+
+    Route::post('/post/{post}/comment', [Controllers\PostController::class, 'comment'])->name('post.comment');
 });
