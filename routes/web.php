@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/upvoteComment/{comment}',[Controllers\UpvoteController::class, 'upvoteComment'])->name('comment.upvote');
     Route::get('/downvoteComment/{comment}',[Controllers\UpvoteController::class, 'downvoteComment'])->name('comment.downvote');
 
+    Route::get('/subreddit', [Controllers\SubredditController::class, 'create'])->name('subreddit.create');
+    Route::post('/subreddit', [Controllers\SubredditController::class, 'store']);
     Route::get('/subreddit/{subreddit}/subscribe', [Controllers\SubredditController::class, 'subscribe'])->name('subreddit.subscribe');
     Route::get('/subreddit/{subreddit}/unsubscribe', [Controllers\SubredditController::class, 'unsubscribe'])->name('subreddit.unsubscribe');
 });

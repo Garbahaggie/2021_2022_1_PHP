@@ -3,6 +3,7 @@
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
                 <a class="link-secondary" href="{{ route('subreddit.list') }}">{{ __('Show all subreddits') }}</a> | 
+                <a class="link-secondary" href="{{ route('subreddit.create') }}">{{ __('Create a new subreddit') }}</a>
             </div>
             <div class="col-4 text-center">
                 <a class="blog-header-logo text-dark" href="{{ route('home') }}">Olvastm</a>

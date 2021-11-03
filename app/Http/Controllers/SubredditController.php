@@ -2,11 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubredditRequest;
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Subreddit;
 
 class SubredditController extends Controller
 {
+    public function create()
+    {
+        return view('subreddits.create');
+    }
+
+    public function store(SubredditRequest $request)
+    {
+        $subreddit = Subreddit::create($request->all());
+
+        return redirect()
+            ->route('subreddit.details', $subreddit);
+    }
+
     public function show(Subreddit $subreddit)
     {
         $posts = $subreddit->posts()
