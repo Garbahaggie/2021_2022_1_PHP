@@ -2,7 +2,7 @@
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
-                <a class="link-secondary" href="#">Subscribe</a>
+                <a class="link-secondary" href="{{ route('subreddit.list') }}">{{ __('Show all subreddits') }}</a> | 
             </div>
             <div class="col-4 text-center">
                 <a class="blog-header-logo text-dark" href="{{ route('home') }}">Olvastm</a>
@@ -40,11 +40,15 @@
     </header>
 
     <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-            @foreach ($subreddits as $subreddit)
-                <a class="p-2 link-secondary" href="{{ route('subreddit.details', $subreddit) }}">
-                    {{ $subreddit->name }}
-                </a>
-            @endforeach
+        <nav class="nav d-flex">
+            @if ($subreddits == null)
+                {{ __('Subscribe to some subreddits to see them here!') }}
+            @else
+                @foreach ($subreddits as $subreddit)
+                    <a class="p-2 link-secondary" href="{{ route('subreddit.details', $subreddit) }}">
+                        {{ $subreddit->name }}
+                    </a>
+                @endforeach
+            @endif
         </nav>
     </div>

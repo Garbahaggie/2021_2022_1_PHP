@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/subreddit/{subreddit}', [Controllers\SubredditController::class,'show'])->name('subreddit.details');
+Route::get('/subreddits', [Controllers\SubredditController::class,'showAll'])->name('subreddit.list');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('post.details');
 
 Route::middleware(['guest'])->group(function () {
@@ -41,4 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/downvotePost/{post}',[Controllers\UpvoteController::class, 'downvotePost'])->name('post.downvote');
     Route::get('/upvoteComment/{comment}',[Controllers\UpvoteController::class, 'upvoteComment'])->name('comment.upvote');
     Route::get('/downvoteComment/{comment}',[Controllers\UpvoteController::class, 'downvoteComment'])->name('comment.downvote');
+
+    Route::get('/subreddit/{subreddit}/subscribe', [Controllers\SubredditController::class, 'subscribe'])->name('subreddit.subscribe');
+    Route::get('/subreddit/{subreddit}/unsubscribe', [Controllers\SubredditController::class, 'unsubscribe'])->name('subreddit.unsubscribe');
 });

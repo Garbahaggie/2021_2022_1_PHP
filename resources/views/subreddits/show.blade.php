@@ -2,9 +2,20 @@
 
 @section('content')
     <h1 class="text-center mb-5">{{ $subreddit->name }}</h1>
-    <a class="btn btn-sm btn-success ms-2 mb-4" href="{{route('post.create', $subreddit) }}">
-        {{__('Post in this subreddit')}}
-    </a>
+    @auth
+        <a class="btn btn-sm btn-success ms-2 mb-4" href="{{ route('post.create', $subreddit) }}">
+            {{ __('Post in this subreddit') }}
+        </a>
+        @if ($subreddit->subscribers()->select('*')->where('user_id', Auth::user()->id)->first() == null)
+            <a class="btn btn-sm btn-info ms-2 mb-4" href="{{ route('subreddit.subscribe', $subreddit) }}">
+                {{__('Subscribe to this subreddit')}}
+            </a>
+        @else
+            <a class="btn btn-sm btn-warning ms-2 mb-4" href="{{ route('subreddit.unsubscribe', $subreddit) }}">
+                {{__('Unsubscribe from this subreddit')}}
+            </a>
+        @endif
+    @endauth
     @if ($posts->count())
         <div class="row">
             <div class="mx-auto">

@@ -16,4 +16,19 @@ class SubredditController extends Controller
         return view('subreddits.show')
             ->with(compact('subreddit', 'posts'));
     }
+
+    public function showAll() {
+        $allSubreddits = Subreddit::orderBy('name')->get();
+        return view('subreddits.list')->with(compact('allSubreddits'));
+    }
+
+    public function subscribe(Subreddit $subreddit) {
+        Auth::user()->subscriptions()->attach($subreddit);
+        return back();
+    }
+
+    public function unsubscribe(Subreddit $subreddit) {
+        Auth::user()->subscriptions()->detach($subreddit);
+        return back();
+    }
 }
