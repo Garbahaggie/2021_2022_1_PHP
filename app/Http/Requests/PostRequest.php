@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required|max:200',
             'subreddit_id' => 'required|exists:subreddits,id',
-            'body' => 'required|min:10|max:350'
+            'body' => 'required|min:10|max:250'
         ];
     }
 }

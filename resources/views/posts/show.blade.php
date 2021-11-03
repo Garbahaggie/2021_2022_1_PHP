@@ -7,10 +7,19 @@
         {{ $post->body }}
     </div>
     <div>
+        {{ $post->upvotes()->count() }}
+    </div>
+    <div>
         @auth
-            <a class="btn btn-sm btn-success mt-4 mb-4" href="#">
-                {{ __('Upvote this post') }}
-            </a>
+            @if ($post->upvotes()->select('*')->where('user_id', Auth::user()->id)->first() == null)
+                <a class="btn btn-sm btn-success mt-4 mb-4" href="{{ route('post.upvote', $post) }}">
+                    {{ __('Upvote this post') }}
+                </a>
+            @else
+                <a class="btn btn-sm btn-danger mt-4 mb-4" href="{{ route('post.downvote', $post) }}">
+                    {{ __('Downvote this post') }}
+                </a>
+            @endif
         @endauth
         <hr>
     </div>
@@ -35,12 +44,20 @@
                 <div class="card-body d-flex">
                     <div>
                         <p>{{ $comment->upvotes()->count() }}</p>
-                        <button class="btn btn-sm btn-success">↑</button>
+                        @if ($comment->upvotes()->select('*')->where('user_id', Auth::user()->id)->first() == null)
+                            <a class="btn btn-sm btn-success mt-4 mb-4" href="{{ route('comment.upvote', $comment) }}">
+                                ↑
+                            </a>
+                        @else
+                            <a class="btn btn-sm btn-danger mt-4 mb-4" href="{{ route('comment.downvote', $comment) }}">
+                                ↓
+                            </a>
+                        @endif
                     </div>
-                    <div class="ms-4">                    
-                        <p><b>{{ $comment->user->name }}</b> | {{$comment->created_at->diffForHumans()}}</p>
+                    <div class="ms-4">
+                        <p><b>{{ $comment->user->name }}</b> | {{ $comment->created_at->diffForHumans() }}</p>
                         <p>{{ $comment->message }}</p>
-                    </div>                
+                    </div>
                 </div>
             </div>
         @endforeach
