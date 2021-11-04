@@ -1,11 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="row">
     @foreach ($allSubreddits as $subreddit)
-        <div>
-            <a class="p-2 link-secondary" href="{{ route('subreddit.details', $subreddit) }}">
-                {{ $subreddit->name }}
-            </a>
-        </div>
+        @include('subreddits._item')
     @endforeach
+</div>
 @endsection
