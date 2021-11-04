@@ -53,7 +53,7 @@
                         @endif
                     </div>
                     <div class="ms-4">
-                        <p><b>{{ $comment->user->name }}</b> | {{ $comment->created_at->diffForHumans() }}</p>
+                        <p><b><a href="{{route('profile.details',Auth::user())}}">{{ $comment->user->name }}</a></b> | {{ $comment->created_at->diffForHumans() }}</p>
                         <p>{{ $comment->message }}</p>
                     </div>
                 </div>

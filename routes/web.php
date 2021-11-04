@@ -18,6 +18,7 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/subreddit/{subreddit}', [Controllers\SubredditController::class,'show'])->name('subreddit.details');
 Route::get('/subreddits', [Controllers\SubredditController::class,'showAll'])->name('subreddit.list');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('post.details');
+Route::get('/user/{user}',[Controllers\ProfileController::class,'show'])->name('profile.details');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/sign-up',[Controllers\Auth\RegisterController::class, 'create'])->name('auth.register');

@@ -18,7 +18,7 @@
             <h4 class="display-10">
                 <a href="{{ route('post.details', $post) }}">{{ $post->title }}</a>
             </h4>
-            <p>{{ $post->author->name }} | {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}
+            <p><a href="{{route('profile.details',Auth::user())}}">{{ $post->author->name }}</a> | {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}
             </p>
             <p>Comments: {{ $post->comments()->count() }}</p>
         </div>

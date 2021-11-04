@@ -19,9 +19,9 @@
                     </svg>
                 </a>
                 @auth
-                    <span>
+                    <a href="{{route('profile.details',Auth::user())}}">
                         {{ Auth::user()->name }}
-                    </span>
+                    </a>
                     <form action="{{ route('auth.logout') }}" method="POST">
                         @csrf
                         <button class="btn btn-sm btn-link" type="submit">
