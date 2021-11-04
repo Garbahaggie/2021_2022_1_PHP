@@ -1,13 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1 class="display-1">{{ $post->title }}</h1>
-    <p>{{ $post->author->name }} | {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}</p>
+    <h1 class="display-4">{{ $post->title }}</h1>
+    <p style="color: gray"> <a href="{{route('profile.details',Auth::user())}}">{{ $post->author->name }}</a> | {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}</p>
     <div>
-        {{ $post->body }}
-    </div>
-    <div>
-        {{ $post->upvotes()->count() }}
+        <p style="font-size: 20pt">{{ $post->body }}</p>
     </div>
     <div>
         @auth
@@ -21,6 +18,7 @@
                 </a>
             @endif
         @endauth
+        |   Number of upvotes: {{ $post->upvotes()->count() }}
         <hr>
     </div>
     <div style="margin-left: 20px" class="row mt-4">
