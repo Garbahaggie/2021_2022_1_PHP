@@ -85,22 +85,15 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
-    }
+        if(Auth::user()->id != $post->author->id){
+            return abort(403);
+        }
+        $post->title = "Post deleted!";
+        $post->body = "The user has deleted this post, sorry :(";
 
-    public function comment(Request $request, Post $post){
-        $request->validate([
-            'comment'=>'required|max:250|min:5',
-        ]);
-
-        $comment = new Comment;
-
-        $comment->author_id = Auth::user()->id;
-        $comment->message = $request->comment;
-
-        $post->comments()->save($comment);
+        $post->save();
 
         return back()
-        ->with('success',__('Comment posted!'));
+        ->with('success',__('Post removed!'));
     }
 }

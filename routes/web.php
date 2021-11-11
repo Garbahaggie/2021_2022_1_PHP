@@ -37,8 +37,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/post/{post}/edit',[Controllers\PostController::class, 'edit'])->name('post.edit');
     Route::post('/post/{post}/edit',[Controllers\PostController::class, 'update']);
 
-    Route::post('/post/{post}/comment', [Controllers\PostController::class, 'comment'])->name('post.comment');
     Route::get('/post/{post}/delete', [Controllers\PostController::class, 'destroy'])->name('post.delete');
+
+    Route::post('/post/{post}/comment', [Controllers\CommentController::class, 'comment'])->name('post.comment');
+    Route::post('/comment/{comment}/reply', [Controllers\CommentController::class, 'reply'])->name('comment.reply');
 
     Route::get('/upvotePost/{post}',[Controllers\UpvoteController::class, 'upvotePost'])->name('post.upvote');
     Route::get('/downvotePost/{post}',[Controllers\UpvoteController::class, 'downvotePost'])->name('post.downvote');

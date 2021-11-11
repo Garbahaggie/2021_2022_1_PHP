@@ -20,4 +20,8 @@ class Comment extends Model
     public function upvotes() {
         return $this->morphMany(Upvote::class,'upvoteable');
     }
+
+    public function replies() {
+        return $this->morphMany(Comment::class,'commentable')->orderBy('created_at','desc');
+    }
 }
