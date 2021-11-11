@@ -34,7 +34,7 @@ class PostController extends Controller
             ->create($request->all());
 
         return redirect()
-            ->route('post.details', $post);
+            ->route('post.details', $post)->with('success',__('Post posted!'));
     }
 
     /**
@@ -56,7 +56,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit')->with(compact('post'));
     }
 
     /**
@@ -68,7 +68,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->except('_token'));
+
+        return redirect()->route('post.edit',$post)
+        ->with('success',__('Post edited!'));        
     }
 
     /**

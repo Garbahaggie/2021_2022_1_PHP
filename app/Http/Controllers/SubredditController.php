@@ -39,11 +39,11 @@ class SubredditController extends Controller
 
     public function subscribe(Subreddit $subreddit) {
         Auth::user()->subscriptions()->attach($subreddit);
-        return back();
+        return back()->with('success',__('Successfully subscribed to this subreddit!'));
     }
 
     public function unsubscribe(Subreddit $subreddit) {
         Auth::user()->subscriptions()->detach($subreddit);
-        return back();
+        return back()->with('success',__('Successfully unsubscribed from this subreddit!'));
     }
 }

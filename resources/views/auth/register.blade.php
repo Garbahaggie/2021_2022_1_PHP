@@ -27,7 +27,7 @@
                         <div class="form-check">
                             <input class="form-check-input {{ $errors ->has('terms') ? 'is-invalid': ''}}" type="checkbox" name="terms" value="1" id="terms" {{old('terms') ? 'checked' : ''}}>
                             <label class="form-check-label" for="terms">
-                                Agree to shit
+                                Agree to disagree
                             </label> 
                             @error('terms')
                                 <div class="invalid-feedback">

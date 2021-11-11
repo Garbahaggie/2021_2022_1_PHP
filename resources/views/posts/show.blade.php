@@ -2,7 +2,12 @@
 
 @section('content')
     <h1 class="display-4">{{ $post->title }}</h1>
-    <p style="color: gray"> <a href="{{route('profile.details',Auth::user())}}">{{ $post->author->name }}</a> | {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}</p>
+    <p style="color: gray"> <a href="{{route('profile.details',Auth::user())}}">{{ $post->author->name }}</a> |
+         {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }} 
+        @if ($post->author == Auth::user())
+            | <a href="{{route('post.edit',$post)}}">edit</a>
+        @endif
+    </p>
     <div>
         <p style="font-size: 20pt">{{ $post->body }}</p>
     </div>
