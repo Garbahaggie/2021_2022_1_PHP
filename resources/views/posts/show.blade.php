@@ -2,11 +2,14 @@
 
 @section('content')
     <h1 class="display-4">{{ $post->title }}</h1>
-    <p style="color: gray"> <a href="{{route('profile.details',Auth::user())}}">{{ $post->author->name }}</a> |
-         {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }} 
-        @if ($post->author == Auth::user())
-            | <a href="{{route('post.edit',$post)}}">edit</a>
-        @endif
+    <p style="color: gray"> <a href="{{ route('profile.details', $post->author) }}">{{ $post->author->name }}</a> |
+        {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}
+        @auth
+            @if ($post->author == Auth::user())
+                | <a href="{{ route('post.edit', $post) }}">edit</a>
+                | <a href="{{ route('post.delete', $post) }}">delete</a>
+            @endif
+        @endauth
     </p>
     <div>
         <p style="font-size: 20pt">{{ $post->body }}</p>
@@ -23,7 +26,7 @@
                 </a>
             @endif
         @endauth
-        |   Number of upvotes: {{ $post->upvotes()->count() }}
+        | Number of upvotes: {{ $post->upvotes()->count() }}
         <hr>
     </div>
     <div style="margin-left: 20px" class="row mt-4">

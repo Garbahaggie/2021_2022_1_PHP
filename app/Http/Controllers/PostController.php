@@ -56,6 +56,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if(Auth::user()->id != $post->author->id){
+            return abort(403);
+        }
         return view('posts.edit')->with(compact('post'));
     }
 
