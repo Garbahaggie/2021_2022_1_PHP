@@ -29,7 +29,7 @@
                 <p><b><a href="{{ route('profile.details', $comment->user) }}">{{ $comment->user->name }}</a></b> |
                     {{ $comment->created_at->diffForHumans() }}</p>
                 <p>{{ $comment->message }}</p>
-                <p><a class="ms-auto relpybox-toggle" onclick="toggleReplyBox()">{{__('Reply')}}</a></p>
+                <p><a class="ms-auto replybox-toggle" onclick="toggleReplyBox({{$comment->id}})">{{ __('Reply') }}</a></p>
             </div>
         </div>
     </div>

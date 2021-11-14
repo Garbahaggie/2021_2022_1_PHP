@@ -74,13 +74,12 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script>
-        function toggleReplyBox() {
-          if(document.getElementById("replyBox").style.display == "none") {
-            document.getElementById("replyBox").style.display = "block"
-          }
-          else {
-            document.getElementById("replyBox").style.display = "none"
-          } 
+        function toggleReplyBox(id) {
+            if (document.getElementById("replyBox-" + id).style.display == "none") {
+                document.getElementById("replyBox-" + id).style.display = "block"
+            } else {
+                document.getElementById("replyBox-" + id).style.display = "none"
+            }
         }
     </script>
 </body>
