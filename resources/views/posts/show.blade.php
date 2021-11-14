@@ -17,13 +17,19 @@
     <div>
         @auth
             @if ($post->upvotes()->select('*')->where('user_id', Auth::user()->id)->first() == null)
-                <a class="btn btn-sm btn-success mt-4 mb-4" href="{{ route('post.upvote', $post) }}">
-                    {{ __('Upvote this post') }}
-                </a>
+                <form action="{{ route('post.upvote', $post) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-sm btn-success mt-4 mb-4" type="submit">
+                        {{ __('Upvote this post') }}
+                    </button>
+                </form>
             @else
-                <a class="btn btn-sm btn-danger mt-4 mb-4" href="{{ route('post.downvote', $post) }}">
-                    {{ __('Downvote this post') }}
-                </a>
+                <form action="{{ route('post.downvote', $post) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-sm btn-danger mt-4 mb-4" type="submit">
+                        {{ __('Downvote this post') }}
+                    </button>
+                </form>
             @endif
         @endauth
         | Number of upvotes: {{ $post->upvotes()->count() }}

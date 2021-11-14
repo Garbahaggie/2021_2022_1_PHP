@@ -42,10 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/post/{post}/comment', [Controllers\CommentController::class, 'comment'])->name('post.comment');
     Route::post('/comment/{comment}/reply', [Controllers\CommentController::class, 'reply'])->name('comment.reply');
 
-    Route::get('/upvotePost/{post}',[Controllers\UpvoteController::class, 'upvotePost'])->name('post.upvote');
-    Route::get('/downvotePost/{post}',[Controllers\UpvoteController::class, 'downvotePost'])->name('post.downvote');
-    Route::get('/upvoteComment/{comment}',[Controllers\UpvoteController::class, 'upvoteComment'])->name('comment.upvote');
-    Route::get('/downvoteComment/{comment}',[Controllers\UpvoteController::class, 'downvoteComment'])->name('comment.downvote');
+    Route::post('/upvotePost/{post}',[Controllers\UpvoteController::class, 'upvotePost'])->name('post.upvote');
+    Route::post('/downvotePost/{post}',[Controllers\UpvoteController::class, 'downvotePost'])->name('post.downvote');
+    Route::post('/upvoteComment/{comment}',[Controllers\UpvoteController::class, 'upvoteComment'])->name('comment.upvote');
+    Route::post('/downvoteComment/{comment}',[Controllers\UpvoteController::class, 'downvoteComment'])->name('comment.downvote');
 
     Route::get('/subreddit', [Controllers\SubredditController::class, 'create'])->name('subreddit.create');
     Route::post('/subreddit', [Controllers\SubredditController::class, 'store']);

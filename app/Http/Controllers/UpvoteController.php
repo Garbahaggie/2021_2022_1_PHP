@@ -10,36 +10,52 @@ use App\Models\Comment;
 
 class UpvoteController extends Controller
 {
-    public function upvotePost(Post $post) {
+    public function upvotePost(Request $request, Post $post) {
         $upvote = new Upvote;
 
         $upvote->user_id = Auth::user()->id;
 
         $post->upvotes()->save($upvote);
 
+        if ($request->redirect_url) {
+            return redirect($request->redirect_url);
+        }
+
         return back();
     }
 
-    public function downvotePost(Post $post) {
+    public function downvotePost(Request $request, Post $post) {
         $upvote = $post->upvotes()->select('*')->where('user_id', Auth::user()->id)->first();
         $post->upvotes()->delete($upvote);
 
+        if ($request->redirect_url) {
+            return redirect($request->redirect_url);
+        }
+
         return back();
     }
 
-    public function upvoteComment(Comment $comment) {
+    public function upvoteComment(Request $request, Comment $comment) {
         $upvote = new Upvote;
 
         $upvote->user_id = Auth::user()->id;
 
         $comment->upvotes()->save($upvote);
 
+        if ($request->redirect_url) {
+            return redirect($request->redirect_url);
+        }
+
         return back();
     }
 
-    public function downvoteComment(Comment $comment) {
+    public function downvoteComment(Request $request, Comment $comment) {
         $upvote = $comment->upvotes()->select('*')->where('user_id', Auth::user()->id)->first();
         $comment->upvotes()->delete($upvote);
+
+        if ($request->redirect_url) {
+            return redirect($request->redirect_url);
+        }
 
         return back();
     }
