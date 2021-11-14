@@ -57,4 +57,9 @@ class User extends Authenticatable
     public function upvotes() {
         return $this->hasMany(Upvote::class);
     }
+
+    public function getAvatarAttribute() {
+        $gravatarHash = md5($this->email);
+        return "https://gravatar.com/avatar/{$gravatarHash}?d=retro"; 
+    }
 }

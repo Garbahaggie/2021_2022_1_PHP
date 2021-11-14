@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="display-4">{{ $post->title }}</h1>
-    <p style="color: gray"> <a href="{{ route('profile.details', $post->author) }}">{{ $post->author->name }}</a> |
+    <p style="color: gray"> <img class="rounded-circle" width="16" src="{{ $post->author->avatar }}" alt="{{ $post->author->name }}"> |  <a href="{{ route('profile.details', $post->author) }}">{{ $post->author->name }}</a> |
         {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}
         @auth
             @if ($post->author == Auth::user())

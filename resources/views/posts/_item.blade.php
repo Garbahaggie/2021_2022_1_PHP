@@ -29,7 +29,7 @@
                 <h4 class="display-10">
                     <a href="{{ route('post.details', $post) }}">{{ $post->title }}</a>
                 </h4>
-                <p><a href="{{ route('profile.details', $post->author) }}">{{ $post->author->name }}</a> |
+                <p><img class="rounded-circle" width="16" src="{{ $post->author->avatar }}" alt="{{ $post->author->name }}"> | <a href="{{ route('profile.details', $post->author) }}">{{ $post->author->name }}</a> |
                     {{ $post->subreddit->name }} | {{ $post->updated_at->diffForHumans() }}
                 </p>
                 <p>Comments: {{ $post->comments()->count() }}</p>
